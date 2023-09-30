@@ -15,13 +15,16 @@ const info = {
 };
 
 export default function MovieList() {
-  const [filter, setFilter] = useState("");
   const { getMovie, movieList, removeMovie } = useMovieList();
   const renderItem = ({ item }: { item: MovieRaw }) => <CardMovie {...item} />;
 
   useEffect(() => {
     console.log(movieList);
   }, [movieList]);
+  useEffect(() => {
+    console.log("lista");
+    console.log(movieList);
+  }, []);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>

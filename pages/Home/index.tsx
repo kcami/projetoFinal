@@ -19,16 +19,19 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function Home() {
   const [filter, setFilter] = useState("");
-  const renderItem = ({ item }: { item: MovieRaw }) => <CardMovie {...item} />;
+  const renderItem = ({ item }: { item: MovieRaw }) => {
+    item.add = true;
+    return <CardMovie {...item} />;
+  };
   const { getMovie, movie } = useMovieList();
 
   async function research() {
     const response = await getMovie(filter);
   }
 
-  useEffect(() => {
-    console.log(movie);
-  }, [movie]);
+  //   useEffect(() => {
+  //     console.log(movie);
+  //   }, [movie]);
 
   const listHeader = () => {
     return (

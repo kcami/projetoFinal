@@ -25,7 +25,7 @@ export interface MovieRaw {
   Production: string;
   Website: string;
   Response: string;
-  add: boolean;
+  add?: boolean;
 }
 
 // export interface MovieList {

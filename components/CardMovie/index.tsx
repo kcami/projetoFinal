@@ -14,19 +14,11 @@ import { MovieRaw } from "../../types/movies";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import useMovieList from "../../services/movies-requests";
 
-export default function CardMovie({
-  Title,
-  Year,
-  Genre,
-  Poster,
-  Metascore,
-  add = true,
-}: MovieRaw) {
-  const { addMovie, movie, getMovie } = useMovieList();
+export default function CardMovie(props: MovieRaw) {
+  const { addMovie, movie, getMovie, movieList } = useMovieList();
   async function handlePress() {
-    const response = await getMovie(Title);
-    if (!response) return;
-    addMovie(response);
+    addMovie(props);
+    console.log(movieList);
   }
   return (
     <View flex={1}>
@@ -59,17 +51,17 @@ export default function CardMovie({
             borderTopLeftRadius={10}
             borderBottomLeftRadius={10}
             source={{
-              uri: Poster,
+              uri: props.Poster,
             }}
           />
 
           <Box p={5} flex={1}>
-            <Heading color='black'>{Title}</Heading>
-            <Text color='black'>{`Nota: ${Metascore}`}</Text>
-            <Text color='black'>{`Ano: ${Year}`}</Text>
-            <Text color='black'>{`Categorias: ${Genre}`}</Text>
+            <Heading color='black'>{props.Title}</Heading>
+            <Text color='black'>{`Nota: ${props.Metascore}`}</Text>
+            <Text color='black'>{`Ano: ${props.Year}`}</Text>
+            <Text color='black'>{`Categorias: ${props.Genre}`}</Text>
           </Box>
-          {add && (
+          {props?.add && (
             <Pressable mr={5} onPress={handlePress}>
               <Ionicons size={35} name='add-circle' color={"#6212B1"} />
             </Pressable>

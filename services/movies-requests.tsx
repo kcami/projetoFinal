@@ -14,9 +14,9 @@ export default function useMovieList() {
       if (movieList) {
         await AsyncStorage.setItem("movieList", JSON.stringify(movieList));
       }
-
+      console.log("Adicionou");
       setMovieList([...movieList, movie]);
-      console.log(movieList);
+      // console.log(movieList);
     } catch (e) {
       console.log(e);
     }
